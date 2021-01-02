@@ -1,0 +1,175 @@
+@font-face{font-family:'NotoSansKR-Black';src:url('/fonts/NotoSansKR-Black.otf') format('opentype');}
+@font-face{font-family:'NotoSansKR-Bold';src:url('/fonts/NotoSansKR-Bold.otf') format('opentype');}
+@font-face{font-family:'NotoSansKR-Medium';src:url('/fonts/NotoSansKR-Medium.otf') format('opentype');}
+@font-face{font-family:'NotoSansKR-Regular';src:url('/fonts/NotoSansKR-Regular.otf') format('opentype');}
+@font-face{font-family:'NotoSansKR-Light';src:url('/fonts/NotoSansKR-Light.otf') format('opentype');}
+@font-face{font-family:'NotoSansKR-Thin';src:url('/fonts/NotoSansKR-Thin.otf') format('opentype');}
+
+$input-border-color : #E9ECF3;
+$input-bg-color : #FBFBFD;
+$input-color : #263747;
+$input-outline-color : #0078FF;
+$input-border-radius : 0.25rem;
+$icon-color : #B2C0CC;
+$code-pre-color : #f6f8fa;
+
+$break-small: 320px;
+$break-large: 1024px;
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+}
+
+a{text-decoration: none; color: $input-outline-color;}
+a:visited{color: $input-outline-color;}
+li{list-style: none;}
+div,ul,li,body{margin: 0;padding: 0;}
+
+@mixin input {
+  padding-left: 1.5rem;
+  height: 20px;
+  padding: 8px 12px;
+  line-height: 20px;
+  font-family: NotoSansKR-Regular;
+  font-size: 16px;
+  border: 1px solid $input-border-color;
+  background-color: $input-bg-color;
+  color: $input-color;
+  border-radius: $input-border-radius;
+  &::placeholder{
+    color: $icon-color;
+  }
+  &:focus{
+    outline: none;
+    box-shadow: 0 0 0 1.8px $input-outline-color;
+  }
+}
+
+@mixin button {
+  font-family: NotoSansKR-Regular;
+  background-color: $input-outline-color;
+  color: #fff;
+  height: 40px;
+  font-size: 16px;
+  width: 70px;
+  border: 0;
+  outline: 0;
+  border-radius: 2px;
+  cursor: pointer;
+  &:hover{
+    background-color: #0053F4;
+  }
+}
+
+#root {
+  font-family: NotoSansKR-Regular, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+header {
+  width: 100vw;
+  a {color: inherit;}
+  .tablist{
+    display: flex;
+    justify-content: space-between;
+    flex: 0 0 60px;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+    background: #fff;
+    li{
+      display: flex;
+      align-items: center;
+      padding: 8px 14px;
+    }
+    .settings{
+      color: $icon-color;
+      cursor: pointer;
+      &:hover{
+        color: #000;
+      }
+    }
+    .settings-modal{
+      display: none;
+      border: 1px solid $input-border-color;
+      border-top: none;
+      position: absolute;
+      right: 0px;
+      top: 55px;
+      width: 50px;
+      background-color: #fff;
+      li{
+        height: 55px;
+        padding: 0;
+        padding-left: 15px;
+      }
+      li:last-child{
+        border-top: 1px solid $input-border-color;
+        padding-left: 18px;
+      }
+    }
+  }
+}
+.tab{
+    position: relative;
+    display: block;
+    line-height: 30px;
+    font-weight: bold;
+}
+
+.autocomplete{
+  @include respond-to(handhelds) { width: 120px; }
+  @include respond-to(medium-screens) { width: 150px; }
+  @include respond-to(wide-screens) { width: 200px; }
+  @include input;
+}
+.autocomplete-list{
+  @include respond-to(handhelds) {
+    width: 120px;
+    margin-left: -60px;
+  }
+  @include respond-to(medium-screens) {
+    width: 150px;
+    margin-left: -77px;
+  }
+  @include respond-to(wide-screens) {
+    width: 200px;
+    margin-left: -106px;
+  }
+  width: 200px;
+  margin-left: -112px;
+  height: 20px;
+  position: absolute;
+  left: 50%;
+}
+
+.autocomplete-items{
+  @include respond-to(handhelds) { width: 120px; }
+  @include respond-to(medium-screens) { width: 150px; }
+  width: 200px;
+  height: 20px;
+  padding: 8px 12px;
+  line-height: 20px;
+  background-color: #fff;
+  a{
+    display: block;
+    color: $input-color;
+  }
+  &:hover{
+    background-color: $input-border-color;
+  }
+}
+.autocomplete-active{
+  background-color: $input-outline-color;
+  a{
+    color: #fff;
+  }
+}
