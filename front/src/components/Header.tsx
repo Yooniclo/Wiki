@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import AutoComplete from './AutoComplete'
-import '../scss/Global.scss'
 
 const Header = () => {
 

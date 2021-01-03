@@ -173,3 +173,127 @@ header {
     color: #fff;
   }
 }
+
+.read{
+  margin: 15px auto;
+  text-align: left;
+  @include respond-to(handhelds) { width: 90vw; }
+  @include respond-to(medium-screens) { width: 98vw; }
+  @include respond-to(wide-screens) { width: 60vw; }
+  background: #fff;
+  pre { background-color: $code-pre-color; }
+  code {
+    font-family: NotoSansKR-Light;
+    padding: 2px 8px 6px 8px;
+    display: block;
+    width: inherit;
+    overflow: auto;
+  }
+  p {
+    a {
+      display: block;
+      overflow: auto;
+    }
+    img { max-width: 100% }
+  }
+}
+.edit{
+  display: block;
+  @include respond-to(handhelds) { height: 31px; }
+  @include respond-to(medium-screens) { height: 31px; }
+  @include respond-to(wide-screens) { height: 38px; }
+  .edit-link{
+    float: right;
+    @include respond-to(handhelds) { padding: 7px 10px 0px 0px; }
+    @include respond-to(medium-screens) { padding: 7px 10px 0px 0px; }
+    @include respond-to(wide-screens) { padding: 14px 20px 0px 0px; }
+  }
+}
+
+.newDoc-container{
+  width: 100vw;
+  .newDoc-wrapper{
+    width: 100vw;
+    textarea{
+      @include respond-to(handhelds) { width: 90vw; height: 40rem; }
+      @include respond-to(medium-screens) { width: 98vw; height: 40rem; }
+      @include respond-to(wide-screens) { width: 60vw; height: 30rem; }
+      margin-top:15px;
+      font-family: NotoSansKR-Regular;
+      font-size: 14px;
+      resize: none;
+      border: 1px solid $input-border-color;
+      padding: 12px;
+      box-sizing: border-box;
+      &::placeholder{
+        color: $icon-color;
+      }
+    }
+  }
+  .doc-category{
+    @include respond-to(handhelds) { width: 90vw; }
+    @include respond-to(medium-screens) { width: 98vw; }
+    @include respond-to(wide-screens) { width: 60vw; }
+    margin: 25px auto;
+    height: 55px;
+    input{
+      float: left;
+      @include input;
+    }
+    button{
+      @include button;
+      float: right;
+    }
+  }
+}
+
+body{
+  margin: 0;
+  background-color: #efefef;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+#app {
+  font-family: NotoSansKR-Regular, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+.autocomplete-items{
+  @include respond-to(handhelds) { width: 120px; }
+  @include respond-to(medium-screens) { width: 150px; }
+  width: 200px;
+  height: 20px;
+  padding: 8px 12px;
+  line-height: 20px;
+  background-color: #fff;
+  a{
+    display: block;
+    color: $input-color;
+  }
+  &:hover{
+    background-color: $input-border-color;
+  }
+}
+.autocomplete-active{
+  background-color: $input-outline-color;
+  a{
+    color: #fff;
+  }
+}
+.markdown-div{
+  box-sizing: border-box;
+  @include respond-to(handhelds) {
+    padding: 15px 15px;
+  }
+  @include respond-to(medium-screens) {
+    padding: 15px + 0.1px 15px;
+  }
+  @include respond-to(wide-screens) {
+    padding: 15px 30px;
+  }
+}

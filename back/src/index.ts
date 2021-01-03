@@ -7,6 +7,7 @@ const Serve = require('koa-static')
 const Sendfile = require('koa-sendfile')
 const https = require('https')
 const fs = require('fs')
+const showdown = require('showdown')
 
 const app = new Koa() 
 const router = new Router()
@@ -42,4 +43,24 @@ if(process.env.NODE_ENV === 'development' || process.env.NODE_ENV === undefined)
 
 app.use(async ctx => {
     await Sendfile(ctx, Path.join(__dirname, '../public/wiki/index.html'))
+})
+
+router.get('/read/:doc', async (ctx: Context) => {
+    let url = './public/wiki/markdown/' + ctx.url.substr(6) + '.md'
+    let data = fs.readFileSync(url, 'utf8')
+    const content = data
+    const converter = new showdown.Converter()
+    const text = content
+    const html = converter.makeHtml(text)
+    ctx.body = { '__html': html }
+})
+
+router.get('/edit/:doc', async (ctx: Context) => {
+    let url = './public/wiki/markdown/' + ctx.url.substr(6) + '.md'
+    let data = fs.readFileSync(url, 'utf8')
+    ctx.body = { 'markdown' : data, 'category' : ctx.url.substr(6) }
+})
+
+router.get('/edit/new', async (ctx: Context) => {
+    ctx.body = { 'markdown' : null, 'category' : null }
 })
