@@ -20,10 +20,10 @@ var config = {
     domain: 'littlehero.io',
     port: 4000,
     https: {
-      options: {
-        key: fs.readFileSync(Path.resolve(process.cwd(), 'src/ssl/privkey1.pem'), 'utf8').toString(),
-        cert: fs.readFileSync(Path.resolve(process.cwd(), 'src/ssl/fullchain1.pem'), 'utf8').toString()
-      }
+        options: {
+            key: fs.readFileSync(Path.resolve(process.cwd(), '../../https-ssl/privkey1.pem'), 'utf8').toString(),
+            cert: fs.readFileSync(Path.resolve(process.cwd(), '../../https-ssl/fullchain1.pem'), 'utf8').toString()
+          }
     }
 }
 
